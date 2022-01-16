@@ -169,27 +169,28 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a asp-controller="Dashboard" asp-action="Index" class="nav-link" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
-                            DashBoard
+                        <a asp-area="AdminArea" asp-controller="Dashboard" asp-action="Index" class="nav-link">
                         </a>
-                        <a asp-controller="Category" asp-action="Index" class="nav-link" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+
+                    <li class="nav-item">
+
+                    <li class="nav-item">
+                        <a asp-area="AdminArea" asp-controller="Category" asp-action="Index" class="nav-link">
                             Categories
                         </a>
-                    <li class="nav-item">
-
-
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="Product" asp-action="Index" class="nav-link" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+                        <a asp-area="AdminArea" asp-controller="Slider" asp-action="Index" class="nav-link">
+                            Sliders
+                        </a>
+
+                    <li class="nav-item">
+                    <li class="nav-item">
+                        <a asp-controller="Product" asp-action="Index" class="nav-link">
                             Products
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">
-                            <i class="mdi mdi-chart-pie menu-icon"></i>
-                            <span class="menu-title">Charts</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="pages/tables/basic-table.html">
                             <i class="mdi mdi-grid-large menu-icon"></i>
@@ -271,5 +272,4 @@
 </body>
 
 </html>
-
 
