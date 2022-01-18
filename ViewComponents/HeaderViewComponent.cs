@@ -22,7 +22,7 @@ namespace FrontToBack.ViewComponents
             ViewBag.ProductCount = 0;
             if (Request.Cookies["basket"]!=null)
             {
-                int total = 0;
+              //  int total = 0;
                 
                 List<BasketProduct> products = JsonConvert.DeserializeObject<List<BasketProduct>>(Request.Cookies["basket"]);
                 //foreach (var item in products)

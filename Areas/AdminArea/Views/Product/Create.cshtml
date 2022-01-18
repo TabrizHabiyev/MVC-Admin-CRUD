@@ -1,0 +1,49 @@
+@model Product
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-description">
+                        Create Product Form
+                    </p>
+
+                    <form id="form" class="forms-sample" method="Post" onsubmit="return validateForm()"   enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label asp-for="Name">Product name</label>
+                            <input id="name" asp-for="Name" class="form-control" placeholder="Name">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                       <div class="form-group">
+                             <label asp-for="Price">Produc  Price</label>
+                            <input asp-for="Price" id="price" class="form-control" placeholder="Price">
+                        </div>
+                          <div class="form-group">
+                            <label asp-for="Photos">Upload product photo</label>
+                            <input id="product_image" asp-for="Photos" class="form-control" accept="image/png, image/gif, image/jpeg" placeholder="Name">
+                            <span asp-validation-for="Photos" class="text-danger"></span>
+                        </div>  
+                        <button class="btn btn-light">Create now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+@section Scripts{
+
+<partial name="_Validation">
+
+    }
+
+
+
