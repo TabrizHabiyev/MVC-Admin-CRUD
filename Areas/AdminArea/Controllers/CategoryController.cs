@@ -16,14 +16,12 @@ namespace FrontToBack.Areas.AdminArea.Controllers
         {
             _context = context;
         }
-        
         public IActionResult Index()
         {
             List<Category> categories = _context.Categories.ToList();
 
             return View(categories);
         }
-
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null) return NotFound();
