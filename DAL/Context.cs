@@ -1,4 +1,4 @@
-﻿    using FrontToBack.Models;
+﻿using FrontToBack.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.DAL
 {
-    public class Context:IdentityDbContext<AppUser>
+    public class Context : IdentityDbContext<AppUser>
     {
-        public Context(DbContextOptions<Context>options):base(options)
+        public Context(DbContextOptions<Context> options) : base(options)
         {
 
         }

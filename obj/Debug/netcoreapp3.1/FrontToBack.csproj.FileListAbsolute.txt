@@ -1,3 +1,11 @@
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.csproj.AssemblyReference.cache
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.AssemblyInfoInputs.cache
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.AssemblyInfo.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.csproj.CoreCompileInputs.cache
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.RazorAssemblyInfo.cache
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.RazorAssemblyInfo.cs
 C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\FrontToBack.exe
 C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\FrontToBack.deps.json
@@ -100,14 +108,6 @@ C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\runtimes\win-x86\nat
 C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.csproj.AssemblyReference.cache
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.AssemblyInfoInputs.cache
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.AssemblyInfo.cs
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.csproj.CoreCompileInputs.cache
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.RazorAssemblyInfo.cache
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.RazorAssemblyInfo.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\staticwebassets\FrontToBack.StaticWebAssets.Manifest.cache
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\staticwebassets\FrontToBack.StaticWebAssets.xml
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\scopedcss\bundle\FrontToBack.styles.css
@@ -121,6 +121,11 @@ C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminAre
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Category\Remove.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Category\Update.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Dashboard\Index.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Product\Create.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Product\Delete.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Product\Detail.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Product\Index.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Product\Update.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Shared\_AdminLayout.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Shared\_Validation.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Slider\Create.cshtml.g.cs
@@ -129,6 +134,8 @@ C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminAre
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Slider\Update.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\_ViewImports.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\_ViewStart.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Basket\ShowBasket.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Category\Index.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Error\Index.cshtml.g.cs
@@ -149,5 +156,6 @@ C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.csproj.C
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.dll
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.pdb
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.genruntimeconfig.cache
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Product\index.cshtml.g.cs
-C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Product\Create.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\User\Index.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\User\Create.cshtml.g.cs

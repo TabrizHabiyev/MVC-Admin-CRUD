@@ -1,4 +1,5 @@
-﻿using FrontToBack.Models;
+﻿
+using FrontToBack.Models;
 using FrontToBack.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -95,7 +96,6 @@ namespace FrontToBack.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-        
 
         public IActionResult Index()
         {
