@@ -159,3 +159,6 @@ C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\FrontToBack.genrunti
 C:\Users\Tabriz\Desktop\FrontToBack\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\User\Index.cshtml.g.cs
 C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\User\Create.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Role\Create.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Role\Index.cshtml.g.cs
+C:\Users\Tabriz\Desktop\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Role\Update.cshtml.g.cs

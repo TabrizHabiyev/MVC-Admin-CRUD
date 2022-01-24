@@ -13,21 +13,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Tabriz\Desktop\FrontToBack\Areas\AdminArea\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\Tabriz\Desktop\FrontToBack\Areas\AdminArea\Views\_ViewImports.cshtml"
 using FrontToBack.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Tabriz\Desktop\FrontToBack\Areas\AdminArea\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\Tabriz\Desktop\FrontToBack\Areas\AdminArea\Views\_ViewImports.cshtml"
 using FrontToBack.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Tabriz\Desktop\FrontToBack\Areas\AdminArea\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc758cdf88f8ce2ec247a836dff9af4fd43451c7", @"/Areas/AdminArea/Views/Shared/_Validation.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bb0f753dfe8b7d08bb52e079407c3b44d3ccba58", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"07e14e9353ac5a8073e92e3a3a3c76d314704dbd", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
     public class Areas_AdminArea_Views_Shared__Validation : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

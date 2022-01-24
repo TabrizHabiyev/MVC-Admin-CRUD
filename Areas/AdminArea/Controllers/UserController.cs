@@ -1,6 +1,8 @@
 ﻿
+using FrontToBack.DAL;
 using FrontToBack.Models;
 using FrontToBack.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,17 +12,24 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.Controllers
 {
-
+    [Authorize(Roles = "Admin")]
     [Area("AdminArea")]
     public class UserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly Context _context;
 
-        public UserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public UserController(
+            UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            Context context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
+            _context = context;
         }
 
 
@@ -60,15 +69,32 @@ namespace FrontToBack.Controllers
                 }
                 return View();
             }
-
             await _signInManager.SignInAsync(user, true);
 
             return RedirectToAction("Index", "User", new { area = "AdminArea" });
         }
 
-        public IActionResult CheckSignIn()
+        public async Task<IActionResult> IsActive(string id)
         {
-            return Content(User.Identity.IsAuthenticated.ToString());
+            AppUser user = await _userManager.FindByIdAsync(id);
+
+            var checkAdminOrUser = _roleManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            if (user.IsActive)
+            {
+                user.IsActive = false;
+            }
+            else
+            {
+                user.IsActive = true;
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
     }

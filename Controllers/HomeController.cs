@@ -1,6 +1,7 @@
 ﻿using FrontToBack.DAL;
 using FrontToBack.Models;
 using FrontToBack.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.Controllers
 {
+  
     public class HomeController : Controller
     {
         private readonly Context _context;

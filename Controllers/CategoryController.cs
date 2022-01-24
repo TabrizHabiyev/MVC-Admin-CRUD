@@ -1,5 +1,6 @@
 ﻿using FrontToBack.DAL;
 using FrontToBack.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.Controllers
 {
+    
     public class CategoryController : Controller
     {
         private readonly Context _context;

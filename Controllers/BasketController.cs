@@ -1,6 +1,7 @@
 ﻿using FrontToBack.DAL;
 using FrontToBack.Models;
 using FrontToBack.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.Controllers
 {
+
     public class BasketController : Controller
     {
         private readonly Context _context;

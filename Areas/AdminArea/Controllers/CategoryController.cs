@@ -1,5 +1,6 @@
 ﻿using FrontToBack.DAL;
 using FrontToBack.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.Areas.AdminArea.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("AdminArea")]
     public class CategoryController : Controller
     {

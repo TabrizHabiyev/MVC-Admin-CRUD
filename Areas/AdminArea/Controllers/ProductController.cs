@@ -1,6 +1,7 @@
 ﻿using FrontToBack.DAL;
 using FrontToBack.Extensions;
 using FrontToBack.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.Areas.AdminArea.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("AdminArea")]
     public class ProductController : Controller
     {
