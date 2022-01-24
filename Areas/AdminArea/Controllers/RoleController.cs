@@ -1,6 +1,7 @@
 ﻿using FrontToBack.DAL;
 using FrontToBack.Models;
 using FrontToBack.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -72,19 +73,22 @@ namespace FrontToBack.Areas.AdminArea.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Update(string id, List<string> roles)
         {
-
-            var user = await _userManager.FindByIdAsync(id);
-            var dbRoles = _roleManager.Roles.ToList();
-            var userRoles = await _userManager.GetRolesAsync(user);
-
-            var addedRole = roles.Except(userRoles);
-            var removedRole = userRoles.Except(roles);
-            await _userManager.AddToRolesAsync(user, addedRole);
-            await _userManager.RemoveFromRolesAsync(user, removedRole);
-
-            return RedirectToAction("index");
+            if(roles.Count > 0)
+            {
+                var user = await _userManager.FindByIdAsync(id);
+                var dbRoles = _roleManager.Roles.ToList();
+                var userRoles = await _userManager.GetRolesAsync(user);
+                var addedRole = roles.Except(userRoles);
+                var removedRole = userRoles.Except(roles);
+                await _userManager.AddToRolesAsync(user, addedRole);
+                await _userManager.RemoveFromRolesAsync(user, removedRole);
+            }
+            else
+            {
+                Response.WriteAsync($"<script language=javascript>alert('Please select role');</script>");
+                return RedirectToAction("role" ,"update");
+            }
+             return RedirectToAction("update");
         }
-
-
     }
 }

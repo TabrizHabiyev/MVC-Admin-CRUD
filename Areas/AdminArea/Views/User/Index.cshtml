@@ -29,6 +29,7 @@
                             <a asp-controller="User" asp-action="Update" asp-route-id="@item.Id" class="btn btn-success"><i class="mdi mdi-table-edit"></i></a>
                             <a asp-controller="User" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info"><i class="mdi mdi-account-card-details"></i></a>
                             <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="mdi mdi-account-remove"></i></a>
+                            <a asp-controller="Role" asp-action="update" asp-route-id="@item.Id" class="btn btn-warning">Update Role</a>
                         </td>
 
                         @if (item.IsActive)

@@ -78,7 +78,7 @@ namespace FrontToBack.Controllers
         {
             AppUser user = await _userManager.FindByIdAsync(id);
 
-            var checkAdminOrUser = _roleManager.FindByIdAsync(id);
+          
 
             if (user == null)
             {
