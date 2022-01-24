@@ -1,7 +1,6 @@
 ﻿using FrontToBack.DAL;
 using FrontToBack.Models;
 using FrontToBack.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -73,6 +72,7 @@ namespace FrontToBack.Areas.AdminArea.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Update(string id, List<string> roles)
         {
+
             if(roles.Count > 0)
             {
                 var user = await _userManager.FindByIdAsync(id);
@@ -85,10 +85,26 @@ namespace FrontToBack.Areas.AdminArea.Controllers
             }
             else
             {
-                Response.WriteAsync($"<script language=javascript>alert('Please select role');</script>");
-                return RedirectToAction("role" ,"update");
+             return RedirectToAction("update");
             }
              return RedirectToAction("update");
+        }
+
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            
+            IdentityRole role = await _roleManager.FindByIdAsync(id);
+            if (role.ToString().ToLower() == "admin" || role.ToString().ToLower() == "superadmin")
+            {
+                return RedirectToAction("role");
+            }
+            if(role != null)
+            {
+              await  _roleManager.DeleteAsync(role);
+            }
+
+            return RedirectToAction("role");
         }
     }
 }
