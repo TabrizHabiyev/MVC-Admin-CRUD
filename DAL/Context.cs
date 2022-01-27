@@ -14,7 +14,7 @@ namespace FrontToBack.DAL
         {
 
         }
-        public DbSet<Comments> Comment { get; set; }
+        public DbSet<Comments> CommentProduct { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<SliderDesc> SliderDescs { get; set; }
         public DbSet<Category> Categories { get; set; }

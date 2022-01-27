@@ -2,6 +2,7 @@
 using FrontToBack.Models;
 using FrontToBack.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,8 +16,10 @@ namespace FrontToBack.Controllers
     public class ProductController : Controller
     {
         private readonly Context _context;
-        public ProductController(Context context)
+        private readonly UserManager<AppUser> _userManager;
+        public ProductController(Context context, UserManager<AppUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
         public IActionResult Index()
@@ -48,9 +51,9 @@ namespace FrontToBack.Controllers
         public IActionResult Detail(int id)
         {
 
-            IEnumerable<Comments> comments = _context.Comment
+            IEnumerable<Comments> comments = _context.CommentProduct
                 .Where(c => c.ProductId == id);
-          
+
             Product product = _context.Products
                 .Include(c=>c.Category)
                 .FirstOrDefault(p => p.Id == id);
@@ -63,8 +66,10 @@ namespace FrontToBack.Controllers
                 ImageUrl = product.ImageUrl,
                 Comments = comments,
             };
+
+            ViewBag.ProductId = product.Id;
             return View(_product);
-        }
+         }
           
 
         // Comment controller

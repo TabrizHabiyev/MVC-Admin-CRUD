@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FrontToBack.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220127022004_Comment")]
-    partial class Comment
+    [Migration("20220127052045_CommentForProduct")]
+    partial class CommentForProduct
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -213,6 +213,9 @@ namespace FrontToBack.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -228,7 +231,7 @@ namespace FrontToBack.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("CommentProduct");
                 });
 
             modelBuilder.Entity("FrontToBack.Models.Expert", b =>
@@ -467,7 +470,7 @@ namespace FrontToBack.Migrations
 
             modelBuilder.Entity("FrontToBack.Models.Comments", b =>
                 {
-                    b.HasOne("FrontToBack.Models.Product", null)
+                    b.HasOne("FrontToBack.Models.Product", "Product")
                         .WithMany("Comments")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
