@@ -47,26 +47,27 @@ namespace FrontToBack.Controllers
         }
         public IActionResult Detail(int id)
         {
+
+            IEnumerable<Comments> comments = _context.Comment
+                .Where(c => c.ProductId == id);
+          
             Product product = _context.Products
                 .Include(c=>c.Category)
                 .FirstOrDefault(p => p.Id == id);
-            return View(product);
 
+            ProductDetailVM _product = new ProductDetailVM
+            {
+                Name = product.Name,
+                Price = product.Price,
+                Category = product.Category.Name,
+                ImageUrl = product.ImageUrl,
+                Comments = comments,
+            };
+            return View(_product);
         }
+          
 
-        //public IActionResult LoadMore()
-        //{
+        // Comment controller
 
-           
-        //    //return Json(_context.Products.Select(p => new ProductReturn
-        //    //{
-        //    //    Id = p.Id,
-        //    //    Name = p.Name,
-        //    //    Price = p.Price,
-        //    //    ImageUrl = p.ImageUrl,
-        //    //    Category = p.Category.Name
-
-        //    //}).Take(8).ToList());
-        //}
     }
 }

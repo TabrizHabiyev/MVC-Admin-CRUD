@@ -1,8 +1,45 @@
-﻿@model Product  
+﻿@model ProductDetailVM
+
 @{
     ViewData["Title"] = "Detail";
 }
 
-<h1>Detail</h1>
-<p>@Model.Name   @Model.Category.Name </p>
 
+<center>
+    <div class="card" style="width:500px!important;">
+        <img class="card-img-top" src="~/img/@Model.ImageUrl" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text"> @Model.Category</p>
+            <a href="#" class="btn btn-primary">Add To card</a>
+        </div>
+    </div>
+</center>
+
+
+<div class="container border" >
+    <div class="row">
+        @foreach (var item in Model.Comments)
+        {
+        <div class="card  box-shadow">
+            <h6>@item.User.UserName</h6>
+            <p>@item.Text</p>
+        </div>
+        }
+    </div>
+</div>
+
+     
+<div class="container">
+    <div class="row">
+        <form action="comment" >
+            <div class="form-group">
+                <label>Comment</label>
+                <textarea class="form-control" name="comment"></textarea>
+            </div>
+            <div class="form-group">
+               <button class="btn-success" type="submit">Comment</button>
+            </div>
+        </form>
+    </div>
+</div>

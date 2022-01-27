@@ -10,7 +10,6 @@ namespace FrontToBack.ViewModels
     public class ForgotPassword
     {
         public AppUser User { get; set; }
-
         public string Token { get; set; }
 
         [DataType(DataType.Password)]

@@ -148,6 +148,11 @@ namespace FrontToBack.Controllers
         //Forget password
         public IActionResult ForgetPassword()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
@@ -188,7 +193,10 @@ namespace FrontToBack.Controllers
 
         public async Task<IActionResult> ResetPassword(string email,string token)
         {
+           
+
             AppUser user = await _userManager.FindByEmailAsync(email);
+
             if (user == null) return NotFound();
 
             ForgotPassword forgetPassword = new ForgotPassword
@@ -223,8 +231,6 @@ namespace FrontToBack.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-
-
 
     }
 }
