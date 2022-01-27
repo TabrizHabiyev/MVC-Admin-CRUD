@@ -25,7 +25,7 @@ namespace FrontToBack.Controllers
         public async Task<ActionResult> Create(Comments comment)
         {
 
-            if (comment.Text.Length < 25)
+            if (comment.Text == null || comment.Text.Length < 25)
               return RedirectToAction("detail", "product", new { id = comment.ProductId });
 
             string userId = String.Empty;
@@ -99,5 +99,8 @@ namespace FrontToBack.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+
+
     }
 }
