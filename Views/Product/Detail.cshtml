@@ -1,7 +1,8 @@
-﻿@model ProductDetailVM
-@{
-    ViewData["Title"] = "Detail";
-}
+﻿@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+
+@model ProductDetailVM
+@{ ViewData["Title"] = "Detail"; }
 
 
 <center>
@@ -15,19 +16,41 @@
     </div>
 </center>
 
+@*// get id of the logged in user *@
+@{
+    string UserId = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+    }
+}
 
-<div class="container border" >
-    <div class="row">
+
+
         @foreach (var item in Model.Comments)
         {
-        <div class="card  box-shadow">
-            @*//<h6>@ViewBag.Comment.FullName</h6>*@
-            <p>@item.Date</p>
-            <p>@item.Text</p>
-        </div><br/>
+            if (UserId == item.UserId)
+            {
+                <div class="card">
+                    <h5 class="card-header"></h5><time datetime="@item.Date"></time>
+                    <div class="card-body">
+                        <p class="card-text">@item.Text</p>
+                        <a  asp-controller="Comment" asp-action="Delete" asp-route-id="@item.Id"  class="btn btn-danger">Delete</a>
+                        <a href="#" class="btn btn-primary">Edit</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="card">
+                    <h5 class="card-header">Tabriz Habiyev</h5><time datetime="@item.Date"></time>
+                    <div class="card-body">
+                        <p class="card-text">@item.Text</p>
+                    </div>
+                </div>
+            }
         }
-    </div>
-</div>
+
 <div class="container">
     <div class="row">
         <form asp-controller="Comment" asp-action="Create" method="post">

@@ -21,19 +21,19 @@ namespace FrontToBack.Controllers
 
         // POST: CommentController/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Comments comment)
         {
 
             if (comment.Text.Length < 25)
               return RedirectToAction("detail", "product", new { id = comment.ProductId });
 
-            string userId = null;
+            string userId = String.Empty;
+
             if (User.Identity.IsAuthenticated)
                userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             else
-            {
-              return RedirectToAction("Login", "Account");
-            }
+               return RedirectToAction("Login", "Account");
 
             try
             {
@@ -56,14 +56,6 @@ namespace FrontToBack.Controllers
         }
 
 
-
-
-        // GET: CommentController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
         // POST: CommentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -80,18 +72,31 @@ namespace FrontToBack.Controllers
         }
 
 
-        // POST: CommentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        // POST: CommentController/Delete/CommentId
+        [HttpGet]
+        public async Task<ActionResult> Delete(int? id)
         {
+            string userId = String.Empty;
+
+            if (User.Identity.IsAuthenticated)
+                userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            Comments comment = await _context.CommentProduct.FindAsync(id);
+            if(comment==null) return RedirectToAction("Index","Home");
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (comment.UserId == userId)
+                {
+                    _context.CommentProduct.Remove(comment);
+                    await _context.SaveChangesAsync();
+                };
+
+                return RedirectToAction("detail", "product", new { id = comment.ProductId });
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", "Home");
             }
         }
     }
