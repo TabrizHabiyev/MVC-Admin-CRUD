@@ -31,18 +31,30 @@
         {
             if (UserId == item.UserId)
             {
-                <div class="card">
-                    <h5 class="card-header"></h5><time datetime="@item.Date"></time>
-                    <div class="card-body">
-                        <p class="card-text">@item.Text</p>
-                        <a  asp-controller="Comment" asp-action="Delete" asp-route-id="@item.Id"  class="btn btn-danger">Delete</a>
-                        <a href="#" class="btn btn-primary">Edit</a>
-                    </div>
-                </div>
+<div class="card mb-5">
+    <h5 class="card-header"></h5><time datetime="@item.Date"></time>
+    <div class="card-body">
+        <p class="card-text">@item.Text</p>
+        <a asp-controller="Comment" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+        <a href="#" class="btn btn-primary">Edit</a>
+    </div>
+    <div class="card-body comment-edit">
+        <form asp-controller="Comment" asp-action="Edit" method="post">
+            <input type="hidden" name="ProductId" value="@ViewBag.ProductId" />
+            <input type="hidden" name="Id" value="@item.Id" />
+            <div class="form-group">
+                <textarea asp- class="form-control" name="Text"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>
             }
             else
             {
-                <div class="card">
+                <div class="card mb-5">
                     <h5 class="card-header">Tabriz Habiyev</h5><time datetime="@item.Date"></time>
                     <div class="card-body">
                         <p class="card-text">@item.Text</p>
@@ -52,7 +64,6 @@
         }
 
 <div class="container">
-    <div class="row">
         <form asp-controller="Comment" asp-action="Create" method="post">
             <input type="hidden" name="ProductId" value="@ViewBag.ProductId" />
             <div class="form-group">
@@ -60,8 +71,7 @@
                 <textarea asp- class="form-control" name="Text"></textarea>
             </div>
             <div class="form-group">
-                <button class="btn-success" type="submit">Comment</button>
+                <button class="btn btn-success" type="submit">Comment</button>
             </div>
         </form>
-    </div>
 </div>

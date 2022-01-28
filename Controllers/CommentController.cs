@@ -56,18 +56,37 @@ namespace FrontToBack.Controllers
         }
 
 
-        // POST: CommentController/Edit/5
+        // POST: CommentController/Edit/comment
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(Comments comment)
         {
+           string userId = String.Empty;
+
+           if (User.Identity.IsAuthenticated)
+                userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+           else
+                return RedirectToAction("Login", "Account");
+
+
+            Comments _comment = _context.CommentProduct.FirstOrDefault(c => c.Id == comment.Id);
+            if (comment == null) return RedirectToAction("Index", "Home");
+
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (_comment.UserId == userId)
+                {
+                    _comment.Text = comment.Text;
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("detail", "product", new { id = comment.ProductId });
+                };
+
+                return RedirectToAction("detail", "product", new { id = comment.ProductId });
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", "Home");
             }
         }
 
