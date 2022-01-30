@@ -44,7 +44,7 @@ namespace FrontToBack.Controllers
                 basketProductList = JsonConvert.DeserializeObject<List<BasketProduct>>(basket);
             }
 
-            BasketProduct isExistProduct = basketProductList.FirstOrDefault(p => p.Id == product.Id || p.UserId == UserID);
+            BasketProduct isExistProduct = basketProductList.FirstOrDefault(p => p.Id == product.Id);
             if (isExistProduct == null)
             {
                 BasketProduct basketProduct = new BasketProduct
