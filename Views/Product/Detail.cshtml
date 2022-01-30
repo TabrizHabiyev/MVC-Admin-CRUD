@@ -31,21 +31,22 @@
             if (UserId == item.UserId)
             {
 <div class="card mb-5">
-    <h5 class="card-header"></h5><time datetime="@item.Date"></time>
+    <h5 class="card-header">Tabriz Habiyev</h5><time datetime="@item.Date"></time>
     <div class="card-body">
         <p class="card-text">@item.Text</p>
         <a asp-controller="Comment" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <a  class="btn btn-primary edit edit-button">Edit</a>
     </div>
-    <div class="card-body comment-edit">
+    <div class="card-body commet-edit " style="display:none">
         <form asp-controller="Comment" asp-action="Edit" method="post">
             <input type="hidden" name="ProductId" value="@ViewBag.ProductId" />
             <input type="hidden" name="Id" value="@item.Id" />
             <div class="form-group">
-                <textarea asp- class="form-control" name="Text"></textarea>
+                <textarea asp- class="form-control" name="Text">@item.Text</textarea>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Edit</button>
+                <a class="btn btn-warning edit cancel-button">Cancel</a>
             </div>
         </form>
     </div>
@@ -74,3 +75,20 @@
             </div>
         </form>
 </div>
+
+<script >
+    let editButton = document.querySelectorAll('.edit-button');
+    let cancelButton = document.querySelectorAll('.cancel-button');
+    editButton.forEach(x => {
+        x.onclick = () => {
+            x.parentElement.style.display = "none";
+            x.parentElement.nextElementSibling.style.display = "block";
+        }
+    })
+    cancelButton.forEach(x => {
+        x.onclick = () => {
+            x.parentElement.parentElement.parentElement.style.display = "none";
+            x.parentElement.parentElement.parentElement.previousElementSibling.style.display = "block";
+        }
+    })
+</script>
