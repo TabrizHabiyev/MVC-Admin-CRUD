@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace FrontToBack.Controllers
@@ -26,6 +27,9 @@ namespace FrontToBack.Controllers
         }
         public async Task<IActionResult> AddBasket(int? id)
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
+            string UserID = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
             if (id == null) return RedirectToAction("Index", "Error");
             Product product =await _context.Products.FindAsync(id);
             if(product==null) return RedirectToAction("Index", "Error");
@@ -40,12 +44,13 @@ namespace FrontToBack.Controllers
                 basketProductList = JsonConvert.DeserializeObject<List<BasketProduct>>(basket);
             }
 
-            BasketProduct isExistProduct = basketProductList.FirstOrDefault(p => p.Id == product.Id);
+            BasketProduct isExistProduct = basketProductList.FirstOrDefault(p => p.Id == product.Id || p.UserId == UserID);
             if (isExistProduct == null)
             {
                 BasketProduct basketProduct = new BasketProduct
                 {
-                    Id=product.Id,
+                    Id = product.Id,
+                    UserId = UserID,
                     Count = 1
                 };
                 basketProductList.Add(basketProduct);
@@ -59,25 +64,34 @@ namespace FrontToBack.Controllers
 
             return RedirectToAction("Index","Home");
         }
+
+
         public IActionResult ShowBasket()
         {
-            string basket=Request.Cookies["basket"];
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
+            string UserID = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            string basket = Request.Cookies["basket"];
             List<BasketProduct> products = new List<BasketProduct>();
             if (basket != null)
             {
+               
+
                 products = JsonConvert.DeserializeObject<List<BasketProduct>>(basket);
                 foreach (var item in products)
                 {
 
-                  Product product=  _context.Products.FirstOrDefault(p => p.Id == item.Id);
+                  Product product =  _context.Products.FirstOrDefault(p => p.Id == item.Id);
                     item.Price = product.Price;
                     item.ImageUrl = product.ImageUrl;
                     item.Name = product.Name;
-
                 }
+
+
                 Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(14) });
 
             }
+            ViewBag.userId = UserID;
             return View(products);
         }
     }
