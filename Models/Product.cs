@@ -21,5 +21,9 @@ namespace FrontToBack.Models
         public IFormFile Photo { get; set; }
         public List<Comments> Comments { get; set; }
 
+        public int Count { get; set; }
+
+        public List<SalesProduct> SalesProducts { get; set; }
+
     }
 }
