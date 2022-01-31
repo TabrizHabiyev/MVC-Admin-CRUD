@@ -58,13 +58,14 @@ namespace FrontToBack.Controllers
 
         // POST: CommentController/Edit/comment
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Comments comment)
+        public async Task<ActionResult> Edit([FromBody] Comments comment)
         {
-           string userId = String.Empty;
+            if (comment.Text == null || comment.Text.Length < 25)
+                return Ok("Comment field should not be empty or less than 25 characters!");
 
+           string userId = String.Empty;
            if (User.Identity.IsAuthenticated)
-                userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                userId = HttpContext.User.FindFirst( ClaimTypes.NameIdentifier).Value;
            else
                 return RedirectToAction("Login", "Account");
 
@@ -79,7 +80,7 @@ namespace FrontToBack.Controllers
                 {
                     _comment.Text = comment.Text;
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("detail", "product", new { id = comment.ProductId });
+                    return Ok("ok");
                 };
 
                 return RedirectToAction("detail", "product", new { id = comment.ProductId });

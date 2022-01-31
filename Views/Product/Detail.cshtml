@@ -26,57 +26,61 @@
 }
 
 
-        @foreach (var item in Model.Comments)
-        {
-            if (UserId == item.UserId)
-            {
-<div class="card mb-5">
-    <h5 class="card-header">Tabriz Habiyev</h5><time datetime="@item.Date"></time>
-    <div class="card-body">
-        <p class="card-text">@item.Text</p>
-        <a asp-controller="Comment" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-        <a  class="btn btn-primary edit edit-button">Edit</a>
-    </div>
-    <div class="card-body commet-edit " style="display:none">
-        <form asp-controller="Comment" asp-action="Edit" method="post">
-            <input type="hidden" name="ProductId" value="@ViewBag.ProductId" />
-            <input type="hidden" name="Id" value="@item.Id" />
-            <div class="form-group">
-                <textarea asp- class="form-control" name="Text">@item.Text</textarea>
+@foreach (var item in Model.Comments)
+{
+    if (UserId == item.UserId)
+    {
+        <div class="card mb-5">
+            <h5 class="card-header">Tabriz Habiyev</h5><time datetime="@item.Date"></time>
+            <div class="card-body">
+                <p class="card-text">@item.Text</p>
+                <a asp-controller="Comment" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                <a class="btn btn-primary edit edit-button">Edit</a>
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Edit</button>
-                <a class="btn btn-warning edit cancel-button">Cancel</a>
-            </div>
-        </form>
-    </div>
-</div>
-            }
-            else
-            {
-                <div class="card mb-5">
-                    <h5 class="card-header">Tabriz Habiyev</h5><time datetime="@item.Date"></time>
-                    <div class="card-body">
-                        <p class="card-text">@item.Text</p>
+          
+            <div class="card-body commet-edit " style="display:none">
+               
+                <!-- Form working with Axios -->
+                <form class="edidForm">
+                    <div id="edidResponse"></div>
+                    <input type="hidden" name="ProductId" value="@ViewBag.ProductId" />
+                    <input type="hidden" name="Id" value="@item.Id" />
+                    <div class="form-group">
+                        <textarea asp- class="form-control" name="Text">@item.Text</textarea>
                     </div>
-                </div>
-            }
-        }
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Edit</button>
+                        <a class="btn btn-warning edit cancel-button">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card mb-5">
+            <h5 class="card-header">Tabriz Habiyev</h5><time datetime="@item.Date"></time>
+            <div class="card-body">
+                <p class="card-text">@item.Text</p>
+            </div>
+        </div>
+    }
+}
 
 <div class="container">
-        <form asp-controller="Comment" asp-action="Create" method="post">
-            <input type="hidden" name="ProductId" value="@ViewBag.ProductId" />
-            <div class="form-group">
-                <label>Comment</label>
-                <textarea asp- class="form-control" name="Text"></textarea>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-success" type="submit">Comment</button>
-            </div>
-        </form>
+    <form asp-controller="Comment" asp-action="Create" method="post">
+        <input type="hidden" name="ProductId" value="@ViewBag.ProductId" />
+        <div class="form-group">
+            <label>Comment</label>
+            <textarea asp- class="form-control" name="Text"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" type="submit">Comment</button>
+        </div>
+    </form>
 </div>
 
-<script >
+<script>
     let editButton = document.querySelectorAll('.edit-button');
     let cancelButton = document.querySelectorAll('.cancel-button');
     editButton.forEach(x => {
@@ -92,3 +96,9 @@
         }
     })
 </script>
+<!--  get Axios -->
+@section AxiosJs{
+
+    <partial name="_AxiosJS">
+
+}

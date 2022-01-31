@@ -18,8 +18,7 @@
 <body>
 
     <!-- HEADER START -->
-
-   // @await Component.InvokeAsync("Header");
+    // @await Component.InvokeAsync("Header");
 
     <!-- HEADER END -->
     @RenderBody()
@@ -112,6 +111,7 @@
     <script src="https://kit.fontawesome.com/e5e249fce2.js" crossorigin="anonymous"></script>
     <script src="~/owlcarousel/owl.carousel.min.js"></script>
     <script src="~/js/script.js"></script>
+    @RenderSection("AxiosJs", false)
 </body>
 
 </html>
