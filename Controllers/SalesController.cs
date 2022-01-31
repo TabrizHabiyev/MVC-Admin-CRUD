@@ -45,7 +45,6 @@ namespace FrontToBack.Controllers
                 var IsExsist = products.FirstOrDefault(x=>x.UserId == UserID);
                 if (IsExsist==null) return RedirectToAction("index", "home");
 
-
                 foreach (var item in products)
                 {
 
@@ -59,8 +58,12 @@ namespace FrontToBack.Controllers
 
             }
 
-            return View(products);
+
+
+            return View(products.Where(x => x.UserId == UserID).ToList());
         }
+
+
 
         // GET: SalesController/Details/5
         public ActionResult Details(int id)
