@@ -2,6 +2,7 @@
 using FrontToBack.Models;
 using FrontToBack.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -14,14 +15,16 @@ namespace FrontToBack.Controllers
 {
     public class SalesController : Controller
     {
+        private readonly UserManager<AppUser> _userManager;
         private readonly Context _context;
-        public SalesController(Context context)
+        public SalesController(Context context, UserManager<AppUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
         // GET: SalesController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
         
             string basket = Request.Cookies["basket"];
@@ -33,7 +36,6 @@ namespace FrontToBack.Controllers
 
             // Get baskets product from users cookie
             
-
             List<BasketProduct> products = new List<BasketProduct>();
 
             if (basket != null)
@@ -55,11 +57,10 @@ namespace FrontToBack.Controllers
                 }
 
                 Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromMinutes(14) });
-
             }
 
 
-
+            ViewBag.User =await  _userManager.FindByIdAsync(UserID);
             return View(products.Where(x => x.UserId == UserID).ToList());
         }
 
