@@ -39,7 +39,14 @@
         }
     </tbody>
 </table>
+
           <p>TotalPrice: @Total</p> }
+        @if (Model.Count != 0)
+        {
+            <form asp-controller="sales" asp-action="index">
+               <button type="submit" class="btn btn-success">Buy</button>
+            </form>
+        }
 
 <a asp-controller="home" asp-action="index">Go to Home</a>}
 
