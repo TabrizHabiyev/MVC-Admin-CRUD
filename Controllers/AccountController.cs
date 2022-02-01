@@ -47,7 +47,7 @@ namespace FrontToBack.Controllers
                 Email = register.Email
 
             };
-            //user.IsActive = true;
+
             IdentityResult identityResult = await _userManager.CreateAsync(user, register.Password);
 
             if (!identityResult.Succeeded)
@@ -59,11 +59,57 @@ namespace FrontToBack.Controllers
                 }
                 return View();
             }
-            await _userManager.AddToRoleAsync(user, "Member");
-            await _signInManager.SignInAsync(user, true);
 
-            return RedirectToAction("Index", "Home");
+            await _userManager.AddToRoleAsync(user, "Member");
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            var ConfirimLink = Url.Action(nameof(EmailConfirm), "Account", new { email = user.Email, token }, Request.Scheme);
+
+            using (MailMessage mail = new MailMessage())
+            {
+                string mailFrom = _config["SMTP_CONNECTION_STRING:SmtpMail"];
+                string mailTo = register.Email;
+                string smtpClient = _config["SMTP_CONNECTION_STRING:SmtpClient"];
+                string smtpMailPassword = _config["SMTP_CONNECTION_STRING:SmtpMailPassword"];
+                int smtpPort = Convert.ToInt32(_config["SMTP_CONNECTION_STRING:SmtpPort"]);
+
+                mail.From = new MailAddress(mailFrom);
+                mail.To.Add(mailTo);
+                mail.Subject = "Email Verification";
+                mail.Body = $"<a href=\"{ConfirimLink}\">Got to reset password</a>";
+                mail.IsBodyHtml = true;
+
+                using (SmtpClient smtp = new SmtpClient(smtpClient, smtpPort))
+                {
+                    smtp.Credentials = new NetworkCredential(mailFrom, smtpMailPassword);
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
         }
+
+
+        //  Confirim Email
+        public async Task<IActionResult> EmailConfirm(string email, string token)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null) return NotFound();
+
+            IdentityResult result = await _userManager.ConfirmEmailAsync(user, token);
+
+
+            TempData["success"] = "Email verified successfully, You can login";
+            return RedirectToAction("Login","Account");
+        }
+
+
+
+
+
         public IActionResult CheckSignIn()
         {
             return Content(User.Identity.IsAuthenticated.ToString());
@@ -82,11 +128,12 @@ namespace FrontToBack.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-
         public async Task<IActionResult> Login(LoginVM login)
         {
             if (!ModelState.IsValid) return View();
+
             AppUser dbUser = await _userManager.FindByNameAsync(login.UserName);
+
 
             if (dbUser == null)
             {
@@ -94,7 +141,14 @@ namespace FrontToBack.Controllers
                 return View();
             }
 
-            var singInResult = await _signInManager.PasswordSignInAsync(dbUser, login.Password, true, true);
+            bool emailConfirim = dbUser.EmailConfirmed;
+            var roles = await _userManager.GetRolesAsync(dbUser);
+
+            if (roles[0] != "Admin" && !emailConfirim)
+            {
+                ModelState.AddModelError("", "Verify your email address to login");
+                return View();
+            }
 
             if (!dbUser.IsActive)
             {
@@ -102,18 +156,23 @@ namespace FrontToBack.Controllers
                 return View();
             }
 
+
+            var singInResult = await _signInManager.PasswordSignInAsync(dbUser, login.Password, true, true);
+
+
             if (singInResult.IsLockedOut)
             {
                 ModelState.AddModelError("", "is lockout");
                 return View();
             }
+
             if (!singInResult.Succeeded)
             {
                 ModelState.AddModelError("", "UserName or Password invalid");
                 return View();
             }
 
-            var roles = await _userManager.GetRolesAsync(dbUser);
+            
             if (roles[0] == "Admin")
             {
                 return RedirectToAction("Index", "Dashboard", new { area = "AdminArea" });
@@ -196,6 +255,7 @@ namespace FrontToBack.Controllers
            
 
             AppUser user = await _userManager.FindByEmailAsync(email);
+
 
             if (user == null) return NotFound();
 

@@ -167,6 +167,7 @@ namespace FrontToBack.Controllers
                 mail.Subject = "Invoice";
                 mail.Body = messageBody;
                 mail.IsBodyHtml = true;
+             
                 using (SmtpClient smtp = new SmtpClient(smtpClient, smtpPort))
                 {
                     smtp.Credentials = new NetworkCredential(mailFrom, smtpMailPassword);

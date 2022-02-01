@@ -34,6 +34,12 @@
                                 <img src="~/img/logo.png" alt="logo">
                             </div>
                             <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+
+                            @if (TempData["success"] != null)
+                            {
+                                <div class="alert alert-success">@TempData["success"]</div> 
+                            }
+
                             <form class="pt-3" method="post">
                                 <div class="form-group">
                                     <input asp-for="UserName" class="form-control form-control-lg" placeholder="Username"><br />
